@@ -1,0 +1,4 @@
+<form [formGroup]="customForm" (ngSubmit)="register(customForm)">
+    <input placeholder="" formControlName="name" uniqueName required>
+    <show-errors [control]="customForm.controls.name"></show-errors>
+</form>

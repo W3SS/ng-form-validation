@@ -1,0 +1,65 @@
+<form #simpleForm="ngForm" (ngSubmit)="register(simpleForm)">
+    <div class="form-group">
+        <label for="contact-name">Contact Name:</label>
+        <input type="text"
+               name="contact-name"
+               id="contact-name"
+               class="form-control"
+               [(ngModel)]="contact.contactName"
+               #contactName="ngModel"
+               [ngClass]="{'is-invalid': contactName.errors && contactName.touched}"
+               minlength="2"
+               required>
+        <div [hidden]="!contactName.errors?.required && contactName.touched" class="invalid-feedback"></div>
+        <div [hidden]="!contactName.errors?.minlength && contactName.touched" class="invalid-feedback"></div>
+    </div>
+
+    <div class="form-group">
+        <label for="contact-email"></label>
+        <input type="text"
+               name="email"
+               id="contact-email"
+               class="form-control"
+               [(ngModel)]="contact.email"
+               #contactEmail="ngModel"
+               [ngClass]="{'is-invalid': email.errors && email.touched}"
+               pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
+               required>
+        <div [hidden]="!contactEmail.errors?.required && contactEmail.touched"></div>
+        <div [hidden]="!contactEmail.errors?.pattern"></div>
+    </div>
+
+    <div class="form-group">
+        <label for="contact-company">Company</label>
+        <input type="text"
+               name="contact-company"
+               id="contact-company"
+               class="form-control"
+               [(ngModel)]="contact.company"
+               #contactCompany="ngModel"
+               [ngClass]="{'is-invalid': contactCompany.errors && contactCompany.touched}"
+               minlength="4"
+               required>
+        <div [hidden]="!contactCompany.errors?.required && contactCompany.touched" class="invalid-feedback"></div>
+        <div [hidden]="!contactCompany.errors?.minlength && contactCompany.touched" class="invalid-feedback"></div>
+    </div>
+
+    <div class="form-group">
+        <label for="phone">PHone</label>
+        <input type="text"
+               name="phone"
+               id="phone"
+               class="form-control"
+               [ngClass]="{'is-invalid': contactPhone.errors && contactPhone.touched}"
+               [(ngModel)]="contact.phoneNumber"
+               #contactPhone="ngModel"
+               minlength="10"
+               required>
+        <div [hidden]="!contactPhone.errors?.required" class="invalid-feedback"></div>
+        <div [hidden]="!contactPhone.errors?.minlength" class="invalid-feedback"></div>
+    </div>
+</form>
+<!-- experimental --->
+<div class="form-group" [ngClass]="{
+    'has-danger': simpleForm.controls.email.invalid && simpleForm.controls.email.dirty
+}"></div>

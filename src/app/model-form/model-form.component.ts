@@ -9,17 +9,16 @@ import { Contact } from './contact.model';
     styleUrls: ['./model-form.component.scss']
 })
 export class ModelFormComponent implements OnInit {
-    simpleForm : FormGroup;
+    simpleForm;
     contact: Contact;
     constructor() {
     }
 
     ngOnInit() {
         this.simpleForm = new FormGroup({
-            name: new FormGroup({
-                firstName: new FormControl('', Validators.required),
-                lastName: new FormControl('', Validators.required)
-            }),
+            contactNam: new FormControl('', [
+                Validators.required
+            ]),
             email: new FormControl('', [
                 Validators.required,
                 Validators.pattern("[^ @]*@[^ @]*")
